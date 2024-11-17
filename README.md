@@ -1,3 +1,3 @@
-# Godot Pocs
+# Godot POCs
 
-Proyectos basicos de practica en godot
+Proyectos básicos de práctica en Godot.
