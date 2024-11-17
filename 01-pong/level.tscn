@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgp5ppg2e8sfu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcuuy"]
+size = Vector2(1920, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jupe5"]
+size = Vector2(50, 1080)
+
+[node name="level" type="Node2D"]
+
+[node name="paredSuperior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paredSuperior"]
+position = Vector2(960, -10)
+shape = SubResource("RectangleShape2D_rcuuy")
+
+[node name="paredInferior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paredInferior"]
+position = Vector2(960, 1090)
+shape = SubResource("RectangleShape2D_rcuuy")
+
+[node name="Area2D-arcoIzquierdo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-arcoIzquierdo"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_jupe5")
+
+[node name="Area2D-arcoIzquierdo" type="Area2D" parent="Area2D-arcoIzquierdo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-arcoIzquierdo/Area2D-arcoIzquierdo"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_jupe5")
