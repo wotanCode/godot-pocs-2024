@@ -1,3 +1,6 @@
 # Pong
 
-Creado en godot 4.3
+Recreación del clásico juego Pong utilizando Godot.
+
+### Requisitos
+- Godot 4.3 o superior
