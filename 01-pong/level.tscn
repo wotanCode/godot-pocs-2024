@@ -1,4 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgp5ppg2e8sfu"]
+[gd_scene load_steps=7 format=3 uid="uid://cgp5ppg2e8sfu"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_ev0aq"]
+[ext_resource type="PackedScene" uid="uid://bc7ajua2dy6p0" path="res://player_character_body_2d.tscn" id="1_jt0md"]
+[ext_resource type="PackedScene" uid="uid://cyuftgkaokymh" path="res://ball.tscn" id="2_0udcf"]
+[ext_resource type="Script" path="res://enemy_character_body_2d.gd" id="3_y17r1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcuuy"]
 size = Vector2(1920, 20)
@@ -7,6 +12,7 @@ size = Vector2(1920, 20)
 size = Vector2(50, 1080)
 
 [node name="level" type="Node2D"]
+script = ExtResource("1_ev0aq")
 
 [node name="paredSuperior" type="StaticBody2D" parent="."]
 
@@ -26,8 +32,46 @@ shape = SubResource("RectangleShape2D_rcuuy")
 position = Vector2(-25, 540)
 shape = SubResource("RectangleShape2D_jupe5")
 
-[node name="Area2D-arcoIzquierdo" type="Area2D" parent="Area2D-arcoIzquierdo"]
+[node name="Area2D-arcoIzquierdo2" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-arcoIzquierdo/Area2D-arcoIzquierdo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-arcoIzquierdo2"]
 position = Vector2(1945, 540)
 shape = SubResource("RectangleShape2D_jupe5")
+
+[node name="PlayerCharacterBody2D" parent="." instance=ExtResource("1_jt0md")]
+position = Vector2(100, 460)
+
+[node name="Ball" parent="." instance=ExtResource("2_0udcf")]
+position = Vector2(1044, 558)
+
+[node name="EnemyCharacterBody2D2" parent="." instance=ExtResource("1_jt0md")]
+position = Vector2(1770, 460)
+script = ExtResource("3_y17r1")
+
+[node name="MarcadorPlayer" type="Label" parent="."]
+offset_top = -300.0
+offset_right = 1920.0
+offset_bottom = 780.0
+theme_override_colors/font_color = Color(0.901961, 0.305882, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Marcador Player:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarcadoEnemigo" type="Label" parent="."]
+custom_minimum_size = Vector2(1980, 1080)
+layout_direction = 1
+offset_top = 300.0
+offset_right = 1980.0
+offset_bottom = 1380.0
+theme_override_colors/font_color = Color(0.988235, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Marcador Enemigo:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D-arcoIzquierdo" to="." method="_on_area_2_darco_izquierdo_body_entered"]
+[connection signal="body_entered" from="Area2D-arcoIzquierdo2" to="." method="_on_area_2_darco_izquierdo_2_body_entered"]
+[connection signal="timeout" from="RestartTimer" to="Ball" method="_on_restart_timer_timeout"]

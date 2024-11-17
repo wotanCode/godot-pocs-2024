@@ -10,6 +10,8 @@ config_version=5
 
 [application]
 
+config/name="Pong"
+config/description="Basado en el curso de platzi"
 run/main_scene="res://level.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
